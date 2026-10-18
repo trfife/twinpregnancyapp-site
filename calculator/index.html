@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Twin Due Date Calculator — estimate your twins' arrival | Twin Pregnancy App</title>
+  <meta name="description" content="A free twin due date calculator. Enter your last period or a known due date to see your full-term EDD, current gestational age, trimester, and the typical 34–37 week twin arrival window.">
+  <link rel="canonical" href="https://twinpregnancyapp.com/calculator/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Twin Due Date Calculator — estimate your twins' arrival">
+  <meta property="og:description" content="Enter your last period or due date to see your full-term EDD, current gestational age, trimester, and the typical twin arrival window. Free, private, runs in your browser.">
+  <meta property="og:url" content="https://twinpregnancyapp.com/calculator/">
+  <meta property="og:site_name" content="Twin Pregnancy App">
+  <meta property="og:image" content="https://twinpregnancyapp.com/og-image.png">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Twin Due Date Calculator — estimate your twins' arrival">
+  <meta name="twitter:description" content="Enter your last period or due date to see your full-term EDD, gestational age, trimester, and the typical twin arrival window. Free and private.">
+  <meta name="twitter:image" content="https://twinpregnancyapp.com/og-image.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@500;600;700&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "Twin Due Date Calculator",
+        "description": "A free twin due date calculator. Enter your last period or a known due date to see your full-term EDD, current gestational age, trimester, and the typical 34–37 week twin arrival window.",
+        "url": "https://twinpregnancyapp.com/calculator/",
+        "applicationCategory": "HealthApplication",
+        "operatingSystem": "Any",
+        "browserRequirements": "Requires JavaScript",
+        "inLanguage": "en",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        "isPartOf": {
+          "@type": "WebSite",
+          "name": "Twin Pregnancy App",
+          "url": "https://twinpregnancyapp.com/"
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://twinpregnancyapp.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Twin Due Date Calculator",
+            "item": "https://twinpregnancyapp.com/calculator/"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <header class="site-head">
+    <div class="wrap">
+      <a class="brand" href="../index.html">
+        <span class="dots"><span class="dot dot-a"></span><span class="dot dot-b"></span></span>
+        Twin Pregnancy App
+      </a>
+      <nav class="nav">
+        <a href="../weeks/">Weeks</a>
+        <a href="../names/">Names</a>
+        <a href="../gear/">Gear</a>
+        <a href="../gifts/">Gifts</a>
+        <a href="../blog/">Blog</a>
+        <a href="../support/">Support</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap">
+        <span class="tag">Two babies, one due date to plan around</span>
+        <h1>Twin Due Date Calculator</h1>
+        <p class="lead">Enter the first day of your last period or a due date your provider gave you. We'll show your full-term estimated due date, how far along you are today, and the window when twins most often arrive — all in your browser, nothing saved or sent.</p>
+      </div>
+    </section>
+
+    <div class="wrap calc-wrap">
+      <section class="calc-card" aria-labelledby="calc-form-heading">
+        <h2 id="calc-form-heading">Calculate your dates</h2>
+
+        <fieldset class="calc-fieldset">
+          <legend>What do you want to calculate from?</legend>
+          <div class="calc-modes">
+            <label class="calc-mode">
+              <input type="radio" name="calcMode" value="lmp" id="modeLmp" checked>
+              <span>First day of last period (LMP)</span>
+            </label>
+            <label class="calc-mode">
+              <input type="radio" name="calcMode" value="edd" id="modeEdd">
+              <span>A due date I already know (EDD)</span>
+            </label>
+          </div>
+        </fieldset>
+
+        <div class="calc-field" id="lmpField">
+          <label for="lmpDate">First day of your last menstrual period</label>
+          <input type="date" id="lmpDate" name="lmpDate" autocomplete="off">
+          <p class="calc-hint muted">Based on a typical 28-day cycle. Your provider may adjust this after an ultrasound.</p>
+        </div>
+
+        <div class="calc-field" id="eddField" hidden>
+          <label for="eddDate">Your estimated full-term due date (EDD)</label>
+          <input type="date" id="eddDate" name="eddDate" autocomplete="off">
+          <p class="calc-hint muted">Use the 40-week due date your OB or midwife gave you.</p>
+        </div>
+
+        <button type="button" class="btn btn-ghost calc-reset" id="resetBtn">Clear</button>
+      </section>
+
+      <section class="calc-results" aria-labelledby="results-heading">
+        <h2 id="results-heading">Your results</h2>
+        <div class="calc-output" id="results" aria-live="polite" role="status">
+          <p class="calc-placeholder muted">Pick a date above to see your estimated due date, how far along you are, and the typical twin arrival window.</p>
+        </div>
+      </section>
+
+      <section class="calc-explainer" aria-labelledby="why-heading">
+        <h2 id="why-heading">Why twins usually arrive earlier</h2>
+        <p>A single-baby pregnancy is dated to 40 weeks, and that 40-week date is still the reference point for twins. But twins rarely stay that long. On average, twins arrive around <strong>35 to 37 weeks</strong>, and many providers plan delivery somewhere in the <strong>34–37 week</strong> range to keep both babies safe.</p>
+        <h3>Your twin type matters</h3>
+        <p>Di/di twins (two placentas, two sacs) often go closer to 37–38 weeks, while mono/di and mono/mono twins are usually delivered earlier because they need closer monitoring. This tool shows a general, informational window — <strong>your care team sets your actual delivery plan</strong> based on your pregnancy, scans, and health.</p>
+        <p class="calc-disclaimer" role="note">
+          <strong>Informational only — not medical advice.</strong> This calculator gives rough estimates using standard pregnancy dating. It does not diagnose, predict your delivery date, or replace prenatal care. Your OB or midwife determines your actual due date and delivery plan.
+        </p>
+      </section>
+
+      <section class="calc-cta surface" aria-labelledby="cta-heading">
+        <h2 id="cta-heading">Keep track of both babies, week by week</h2>
+        <p>The Twin Pregnancy App follows both twins through every week — per-baby sizes, a due-date countdown, appointment tracking, and double planning. Private by design, offline, and free.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="../index.html#cta">Get the app</a>
+          <a class="btn btn-ghost" href="../weeks/">Browse the week-by-week guide</a>
+        </div>
+        <p class="calc-links muted">More free tools: <a href="../checklist/">twin hospital bag checklist</a> · <a href="../names/">twin baby names</a> · <a href="../gear/">twin gear guide</a></p>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-foot">
+    <div class="wrap">
+      <div class="links">
+        <a href="../index.html">Home</a>
+        <a href="../weeks/">Weeks</a>
+        <a href="../names/">Names</a>
+        <a href="../gear/">Gear</a>
+        <a href="../gifts/">Gifts</a>
+        <a href="../blog/">Blog</a>
+        <a href="../checklist/">Checklist</a>
+        <a href="../privacy/">Privacy Policy</a>
+        <a href="../support/">Support</a>
+      </div>
+      <p class="disclosure">Twin Pregnancy App provides general information only and is not medical advice. This calculator does not predict your delivery date; talk to your provider about your due date and delivery plan.</p>
+      <p class="muted">&copy; 2026 Twin Pregnancy App</p>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var DAY = 86400000;
+      var GEST_DAYS = 280; // 40 weeks
+
+      var modeRadios = Array.prototype.slice.call(document.querySelectorAll('input[name="calcMode"]'));
+      var lmpField = document.getElementById('lmpField');
+      var eddField = document.getElementById('eddField');
+      var lmpInput = document.getElementById('lmpDate');
+      var eddInput = document.getElementById('eddDate');
+      var results = document.getElementById('results');
+      var resetBtn = document.getElementById('resetBtn');
+
+      // Parse a yyyy-mm-dd value into a local Date at midnight (avoids UTC shift).
+      function parseDate(value) {
+        if (!value) return null;
+        var parts = value.split('-');
+        if (parts.length !== 3) return null;
+        var y = parseInt(parts[0], 10);
+        var m = parseInt(parts[1], 10);
+        var d = parseInt(parts[2], 10);
+        if (!y || !m || !d) return null;
+        var dt = new Date(y, m - 1, d);
+        if (isNaN(dt.getTime())) return null;
+        // Guard against overflow (e.g. Feb 30 -> Mar 2).
+        if (dt.getFullYear() !== y || dt.getMonth() !== m - 1 || dt.getDate() !== d) return null;
+        return dt;
+      }
+
+      function startOfToday() {
+        var n = new Date();
+        return new Date(n.getFullYear(), n.getMonth(), n.getDate());
+      }
+
+      function addDays(date, days) {
+        return new Date(date.getFullYear(), date.getMonth(), date.getDate() + days);
+      }
+
+      function diffDays(a, b) {
+        // whole days from a to b
+        return Math.round((b.getTime() - a.getTime()) / DAY);
+      }
+
+      function fmtDate(date) {
+        return date.toLocaleDateString('en-US', { weekday: 'short', year: 'numeric', month: 'long', day: 'numeric' });
+      }
+
+      function fmtShort(date) {
+        return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+      }
+
+      function weeksDays(totalDays) {
+        var w = Math.floor(totalDays / 7);
+        var d = totalDays % 7;
+        return w + 'w ' + d + 'd';
+      }
+
+      function esc(s) {
+        return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+      }
+
+      function showMessage(html) {
+        results.innerHTML = html;
+      }
+
+      function placeholder() {
+        showMessage('<p class="calc-placeholder muted">Pick a date above to see your estimated due date, how far along you are, and the typical twin arrival window.</p>');
+      }
+
+      function trimesterFor(gaDays) {
+        if (gaDays < 14 * 7) return 'First trimester';
+        if (gaDays < 28 * 7) return 'Second trimester';
+        return 'Third trimester';
+      }
+
+      function render() {
+        var mode = document.querySelector('input[name="calcMode"]:checked').value;
+        var lmp = null;
+        var edd = null;
+        var today = startOfToday();
+
+        if (mode === 'lmp') {
+          lmp = parseDate(lmpInput.value);
+          if (!lmp) { placeholder(); return; }
+          if (diffDays(today, lmp) > 0) {
+            showMessage('<p class="calc-note">That last-period date is in the future. Please pick the first day of a period that has already started.</p>');
+            return;
+          }
+          edd = addDays(lmp, GEST_DAYS);
+        } else {
+          edd = parseDate(eddInput.value);
+          if (!edd) { placeholder(); return; }
+          lmp = addDays(edd, -GEST_DAYS);
+        }
+
+        var gaDays = diffDays(lmp, today); // days pregnant as of today
+        var daysToEdd = diffDays(today, edd);
+
+        // Twin arrival window: 34w0d to 37w0d, "around 36 weeks" as the middle marker.
+        var winStart = addDays(lmp, 34 * 7);
+        var winMid = addDays(lmp, 36 * 7);
+        var winEnd = addDays(lmp, 37 * 7);
+
+        var parts = [];
+
+        // Primary: full-term EDD
+        parts.push(
+          '<div class="calc-result-block calc-result-primary">' +
+            '<p class="calc-result-label">Full-term due date (40 weeks)</p>' +
+            '<p class="calc-result-value">' + esc(fmtDate(edd)) + '</p>' +
+            '<p class="calc-result-sub muted">This is the standard reference date. It assumes a full 40-week pregnancy.</p>' +
+          '</div>'
+        );
+
+        // Gestational age / status
+        if (gaDays < 0) {
+          parts.push('<div class="calc-result-block"><p class="calc-note">Those dates put conception in the future. Double-check the date you entered.</p></div>');
+        } else if (gaDays > 44 * 7) {
+          parts.push(
+            '<div class="calc-result-block">' +
+              '<p class="calc-result-label">How far along</p>' +
+              '<p class="calc-result-value">Already arrived</p>' +
+              '<p class="calc-result-sub muted">These dates are more than 44 weeks ago, so your twins have very likely been born. Congratulations! Update the date if you meant a current pregnancy.</p>' +
+            '</div>'
+          );
+        } else {
+          var ga = weeksDays(gaDays);
+          var tri = trimesterFor(gaDays);
+          var alongSub;
+          if (gaDays > 42 * 7) {
+            alongSub = 'This is past 42 weeks — well beyond when twins are typically delivered. If this is a current pregnancy, check in with your provider.';
+          } else if (daysToEdd < 0) {
+            alongSub = 'You are past the 40-week reference date. Twins are almost always delivered before now.';
+          } else {
+            alongSub = tri;
+          }
+          parts.push(
+            '<div class="calc-result-block">' +
+              '<p class="calc-result-label">How far along today</p>' +
+              '<p class="calc-result-value">' + esc(ga) + '</p>' +
+              '<p class="calc-result-sub muted">' + esc(alongSub) + '</p>' +
+            '</div>'
+          );
+        }
+
+        // Twin window
+        parts.push(
+          '<div class="calc-result-block calc-result-twin">' +
+            '<p class="calc-result-label">Typical twin arrival window</p>' +
+            '<p class="calc-result-value">' + esc(fmtShort(winStart)) + ' – ' + esc(fmtShort(winEnd)) + '</p>' +
+            '<p class="calc-result-sub muted">Most twins arrive around 36 weeks (about ' + esc(fmtShort(winMid)) + '), commonly within the 34–37 week range. This is typical, informational guidance — not a prediction. Your care team sets your real plan.</p>' +
+          '</div>'
+        );
+
+        // Countdown
+        var daysToWindow = diffDays(today, winStart);
+        var daysToMid = diffDays(today, winMid);
+        var countdown;
+        if (gaDays < 0) {
+          countdown = '';
+        } else if (daysToWindow > 0) {
+          var wkTo = Math.round(daysToWindow / 7);
+          countdown = 'About <strong>' + wkTo + (wkTo === 1 ? ' week' : ' weeks') + '</strong> until the start of the typical twin window (around 34 weeks).';
+        } else if (daysToMid > 0) {
+          var wkMid = Math.max(1, Math.round(daysToMid / 7));
+          countdown = 'You are <strong>inside the typical twin window now</strong> — roughly ' + wkMid + (wkMid === 1 ? ' week' : ' weeks') + ' from the ~36-week midpoint. Keep your bag ready.';
+        } else if (daysToEdd >= 0) {
+          countdown = 'You are <strong>past the typical twin window</strong> and approaching the 40-week reference date. Stay in close touch with your provider.';
+        } else {
+          countdown = '';
+        }
+        if (countdown) {
+          parts.push('<div class="calc-result-block calc-countdown"><p>' + countdown + '</p></div>');
+        }
+
+        parts.push('<p class="calc-result-foot muted">Estimates use standard 40-week dating (LMP + 280 days). Not medical advice.</p>');
+
+        showMessage(parts.join(''));
+      }
+
+      function switchMode() {
+        var mode = document.querySelector('input[name="calcMode"]:checked').value;
+        if (mode === 'lmp') {
+          lmpField.hidden = false;
+          eddField.hidden = true;
+        } else {
+          lmpField.hidden = true;
+          eddField.hidden = false;
+        }
+        render();
+      }
+
+      modeRadios.forEach(function (r) { r.addEventListener('change', switchMode); });
+      lmpInput.addEventListener('input', render);
+      lmpInput.addEventListener('change', render);
+      eddInput.addEventListener('input', render);
+      eddInput.addEventListener('change', render);
+      resetBtn.addEventListener('click', function () {
+        lmpInput.value = '';
+        eddInput.value = '';
+        placeholder();
+      });
+
+      switchMode();
+    })();
+  </script>
+</body>
+</html>

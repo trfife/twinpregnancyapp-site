@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img" aria-label="Twin Pregnancy App — Week by week, for two">
+  <rect width="1200" height="630" fill="#fefbfa"/>
+  <rect x="0" y="0" width="1200" height="12" fill="#e5564a"/>
+  <rect x="0" y="618" width="1200" height="12" fill="#009494"/>
+  <g transform="translate(120 235)">
+    <path d="M80 150s-72-44-72-97C8 26 30 4 56 4c15 0 24 8 24 8s9-8 24-8c26 0 48 22 48 49 0 53-72 97-72 97z" fill="#e5564a"/>
+    <circle cx="56" cy="48" r="20" fill="#fefbfa"/>
+    <circle cx="104" cy="48" r="20" fill="#009494"/>
+    <circle cx="56" cy="48" r="9" fill="#e5564a"/>
+    <circle cx="104" cy="48" r="9" fill="#fefbfa"/>
+  </g>
+  <text x="340" y="295" font-family="Spectral, Georgia, 'Times New Roman', serif" font-weight="700" font-size="72" fill="#2a2522">Twin Pregnancy App</text>
+  <text x="340" y="365" font-family="Spectral, Georgia, 'Times New Roman', serif" font-weight="400" font-size="42" fill="#007a7a">Week by week, for two</text>
+</svg>

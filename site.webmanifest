@@ -1,0 +1,11 @@
+{
+  "name": "Twin Pregnancy App",
+  "short_name": "Twin Pregnancy",
+  "description": "A calm, private, week-by-week pregnancy companion built just for twins.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#fefbfa",
+  "theme_color": "#e5564a",
+  "icons": []
+}
